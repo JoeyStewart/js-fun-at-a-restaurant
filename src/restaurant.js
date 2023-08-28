@@ -38,10 +38,10 @@ function addMenuItem(restaurant, items) {
 
 function checkForFood(restaurant, foodItem) {
   var menu = restaurant.menus[foodItem.type]
-  var existingItem = menu.find(function(menuItem) {
+  var existItem = menu.find(function(menuItem) {
     return menuItem.name === foodItem.name
   })
-  if (existingItem) {
+  if (existItem) {
     return `Yes, we're serving ${foodItem.name} today!`
   } else {
     return `Sorry, we aren't serving ${foodItem.name} today.`
