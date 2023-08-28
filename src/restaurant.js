@@ -24,13 +24,34 @@ function addMenuItem(restaurant, items) {
   newArray.push(items)
 }
 
-function removeMenuItem(){
-  
+ function removeMenuItem(restaurant, items, findMenu) {
+  var menu = restaurant.menus[findMenu]
+  var removeItem = menu.findIndex(function(menuItem) {
+    return menuItem.name === items
+  })
+  if (removeItem !== -1) {
+    var takenItem = menu.splice(removeItem, 1)[0]
+    return `No one is eating our ${takenItem.name} - it has been removed from the ${findMenu} menu!`
+  }
+  return `Sorry, we don't sell ${items}, try adding a new recipe!`
 }
+
+function checkForFood(restaurant, foodItem) {
+  var menu = restaurant.menus[foodItem.type]
+  var existingItem = menu.find(function(menuItem) {
+    return menuItem.name === foodItem.name
+  })
+  if (existingItem) {
+    return `Yes, we're serving ${foodItem.name} today!`
+  } else {
+    return `Sorry, we aren't serving ${foodItem.name} today.`
+  }
+}
+
 
 module.exports = {
   createRestaurant, 
   addMenuItem,
   removeMenuItem,
-  // checkForFood
+  checkForFood
 }
